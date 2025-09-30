@@ -1,20 +1,35 @@
-// external
+// EXTERNAL MODULES
+
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+require("dotenv").config(); // Load environment variables from .env
 
-// internal
-const { connectDb } = require("./server");
-require("dotenv").config();
+// INTERNAL MODULES
+
+const { connectDb } = require("./server"); // MongoDB connection
+const authRoutes = require("./routes/authRouter"); // Auth routes
+
+// EXPRESS APP INIT
 
 const app = express();
-app.use(express.json());
 
-app.use(morgan("dev")); // in dev mode
+// MIDDLEWARES
+
+app.use(cors()); // Enable CORS
+app.use(express.json()); // Parse JSON bodies
+app.use(morgan("dev")); // HTTP request logger in 'dev' format
+
+// ROUTES
+
+app.use("/api/auth", authRoutes); // Mount auth routes at /api/auth
+
+// PORT
 
 const PORT = process.env.PORT || 3000;
 
-// Connection
+// DATABASE CONNECTION & SERVER START
+
 connectDb()
   .then(() => {
     app.listen(PORT, () => {
@@ -23,5 +38,5 @@ connectDb()
   })
   .catch((err) => {
     console.error("Failed to connect to MongoDB:", err.message);
-    process.exit(1);
+    process.exit(1); // Exit process if DB connection fails
   });
