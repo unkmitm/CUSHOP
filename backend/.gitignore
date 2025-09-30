@@ -1,0 +1,49 @@
+# --- Node ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log
+
+# --- Env/Secrets ---
+.env
+.env.local
+.env.*.local
+
+# --- Logs ---
+logs
+*.log
+logs/*.log
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# --- Coverage/Tests ---
+coverage/
+.nyc_output/
+*.lcov
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db
+
+# --- Build/Dist ---
+dist/
+build/
+tmp/
+temp/
+.cache/
+
+# --- Editors/IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Other ---
+*.bak
+*.old
