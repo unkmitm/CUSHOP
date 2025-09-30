@@ -1,6 +1,7 @@
 // external
 const express = require("express");
 const cors = require("cors");
+const morgan = require("morgan");
 
 // internal
 const { connectDb } = require("./server");
@@ -8,6 +9,8 @@ require("dotenv").config();
 
 const app = express();
 app.use(express.json());
+
+app.use(morgan("dev")); // in dev mode
 
 const PORT = process.env.PORT || 3000;
 
