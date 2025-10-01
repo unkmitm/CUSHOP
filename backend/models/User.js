@@ -53,7 +53,7 @@ userSchema.methods.generateToken = function () {
   return jwt.sign(
     { id: this._id, role: this.role }, // payload
     process.env.JWT_SECRET,
-    { expiresIn: JWT_LIFETIME } // token expiration
+    { expiresIn: process.env.JWT_LIFETIME } // token expiration
   );
 };
 
